@@ -28,7 +28,7 @@ class Stacker_Regresion:
             if(pred.shape[0] != Y.shape):
                 pred = pred.reshape(1,-1)
             predictions.append(pred.squeeze())
-            err.append((pred - Y).squeeze())
+            err.append((np.squere( pred**2 - Y **2)).squeeze())
             
         classes = []
         for i in range(len(err[0])):
