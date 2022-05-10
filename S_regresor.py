@@ -76,11 +76,11 @@ class Stacker_Regresion:
         temp = Stacker_Regresion.Classfier.predict(X)
         if(temp.shape[0] != X.shape[0]):
                 temp = temp.reshape(1,-1)
-        predictions.append(temp.squeeze())
+        temp = temp.squeeze()
         
         final_pred = []
         for i in range(len(predictions[0])):
-            final_pred.append(predictions[ predictions[-1][i] ][i])
+            final_pred.append(predictions[temp[i]][i])
             
         return np.array(final_pred),np.array(predictions[:-1])
     
