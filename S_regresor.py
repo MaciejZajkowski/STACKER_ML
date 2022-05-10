@@ -67,6 +67,7 @@ class Stacker_Regresion:
         
         for model in Stacker_Regresion.models:
             pred = model.predict(X)
+            print(pred)
             if(pred.shape[0] != X.shape[0]):
                 pred = pred.reshape(1,-1)
             predictions.append(pred.squeeze())
