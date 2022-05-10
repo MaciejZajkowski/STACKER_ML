@@ -83,22 +83,22 @@ class Stacker_Regresion:
             
         return np.array(final_pred),np.array(predictions[:-1])
     
-    def evaluate(self,y, pred):
+    def evaluate(self,Y, pred):
         #TODO conditions for squese
         x= []
-        x.append(skl.metrics.median_absolute_error(y,pred))
+        x.append(skl.metrics.median_absolute_error(Y,pred))
         print("Median absolute error: " ,x[0])
         
-        x.append(skl.metrics.mean_absolute_percentage_error(y,pred))
+        x.append(skl.metrics.mean_absolute_percentage_error(Y,pred))
         print("Median absolute % error: " ,x[1])
         
-        x.append(skl.metrics.mean_squared_log_error(y,pred))
+        x.append(skl.metrics.mean_squared_log_error(Y,pred))
         print("Mean sq log error: " ,x[2])
         
-        x.append(skl.metrics.mean_squared_error(y,pred))
+        x.append(skl.metrics.mean_squared_error(Y,pred))
         print("Mean sq error: " ,x[3])
         
-        x.append(skl.metrics.r2_score(y,pred))
+        x.append(skl.metrics.r2_score(Y,pred))
         print("r2 score: " ,x[4])
         return x
     
