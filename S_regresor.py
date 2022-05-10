@@ -80,6 +80,7 @@ class Stacker_Regresion:
         
         final_pred = []
         for i in range(len(predictions[0])):
+            print(i)
             final_pred.append(predictions[temp[i]][i])
             
         return np.array(final_pred),np.array(predictions[:-1])
