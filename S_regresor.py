@@ -107,7 +107,7 @@ class Stacker_Regresion:
         f_pred,pred = Stacker_Regresion.predict(self = self,X=X)
         print("\nEvaluating Final model: \n")
         Stacker_Regresion.evaluate(self=self,Y=Y,pred=f_pred)
-        for i in range(len(pred)+1):
-            print("\nEvaluating model: {} \n".format(Stacker_Regresion.models[i]))
+        for i in range(len(pred)):
+            print("\nEvaluating model: {} \n".format(Stacker_Regresion.models[i+1]))
             Stacker_Regresion.evaluate(self = self,Y=Y,pred = pred[i])
         
