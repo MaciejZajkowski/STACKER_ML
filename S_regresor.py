@@ -81,7 +81,7 @@ class Stacker_Regresion:
         for i in range(len(temp)):
             final_pred.append(predictions[temp[i]][i])
             
-        return np.array(final_pred),np.array(predictions[:-1])
+        return np.array(final_pred),np.array(predictions)
     
     def evaluate(self,Y, pred):
         #TODO conditions for squese
@@ -108,7 +108,6 @@ class Stacker_Regresion:
         print("\nEvaluating Final model: \n")
         Stacker_Regresion.evaluate(self=self,Y=Y,pred=f_pred)
         for i in range(len(pred)):
-            print(pred)
-            #print("\nEvaluating model: {} \n".format(Stacker_Regresion.models[i+1]))
-            #Stacker_Regresion.evaluate(self = self,Y=Y,pred = pred[i])
+            print("\nEvaluating model: {} \n".format(Stacker_Regresion.models[i+1]))
+            Stacker_Regresion.evaluate(self = self,Y=Y,pred = pred[i])
         
