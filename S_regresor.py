@@ -83,7 +83,7 @@ class Stacker_Regresion:
             
         return np.array(final_pred),np.array(predictions[:-1])
     
-    def evaluate(self,y, pred):
+    def evaluate(y, pred):
         #TODO conditions for squese
         x= []
         x.append(skl.metrics.median_absolute_error(y,pred))
@@ -106,7 +106,7 @@ class Stacker_Regresion:
         
         f_pred,pred = Stacker_Regresion.predict(self = self,X=X)
         print("\nEvaluating Final model: \n")
-        Stacker_Regresion.evaluate(self,Y,f_pred)
+        Stacker_Regresion.evaluate(Y,f_pred)
         for i in range(len(pred)):
             print("\nEvaluating model: {} \n".format(Stacker_Regresion.models[i]))
             Stacker_Regresion.evaluate(self = self,Y=Y,pred = pred[i])
