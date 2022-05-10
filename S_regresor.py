@@ -79,9 +79,7 @@ class Stacker_Regresion:
         temp = temp.squeeze()
         
         final_pred = []
-        print("lol")
         for i in range(len(temp)):
-            print("lol")
             final_pred.append(predictions[temp[i]][i])
             
         return np.array(final_pred),np.array(predictions[:-1])
