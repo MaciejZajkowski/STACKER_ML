@@ -98,7 +98,9 @@ class Stacker_Regresion:
         
         if Stacker_Regresion.Boosting:
             F_set = pd.concat([pd.DataFrame( X) ,pd.DataFrame(predictions)],axis=1,join='inner').values
+            print(F_set)
             final_pred =Stacker_Regresion.Final_model.predict(F_set)
+            
         else:    
             temp = Stacker_Regresion.Final_model.predict(X)
             if(temp.shape[0] != X.shape[0]):
