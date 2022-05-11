@@ -95,16 +95,19 @@ class Stacker_Regresion:
                     pred = pred.reshape(1,-1)
                 predictions.append(pred.squeeze())
             cnt+=1
-            
-            
-        temp = Stacker_Regresion.Final_model.predict(X)
-        if(temp.shape[0] != X.shape[0]):
-                temp = temp.reshape(1,-1)
-        temp = temp.squeeze()
         
-        final_pred = []
-        for i in range(len(temp)):
-            final_pred.append(predictions[temp[i]][i])
+        if Stacker_Regresion.Boosting:
+            F_set = pd.concat([pd.DataFrame( X) ,pd.DataFrame(predictions)],axis=1,join='inner').values
+            final_pred =Stacker_Regresion.Final_model.predict(F_set)
+        else:    
+            temp = Stacker_Regresion.Final_model.predict(X)
+            if(temp.shape[0] != X.shape[0]):
+                    temp = temp.reshape(1,-1)
+            temp = temp.squeeze()
+            
+            final_pred = []
+            for i in range(len(temp)):
+                final_pred.append(predictions[temp[i]][i])
             
         return np.array(final_pred),np.array(predictions)
     
