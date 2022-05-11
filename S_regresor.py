@@ -79,7 +79,7 @@ class Stacker_Regresion:
         
         if Stacker_Regresion.Boosting:
             F_set = pd.concat([pd.DataFrame( X_train2) ,pd.DataFrame(pred)],axis=1,join='inner')
-            return F_set
+            return X_train2
             hist.append( Stacker_Regresion.Final_model.fit(F_set,Y_train2))
         else:
             hist.append( Stacker_Regresion.Final_model.fit(X_train2,classes))
