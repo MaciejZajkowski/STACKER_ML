@@ -10,11 +10,12 @@ class Stacker_Regresion:
         Then trains provided clasifier that will chouse what model to use during each prediction
         When using keras you need to compile model beafore you put in here
     """
-    def __init__(self,models=[],Classifier = [],training_sets_split = 0.2):
+    def __init__(self,models=[],Final_model = [],training_sets_split = 0.2,Boosting = False):
         Stacker_Regresion.models = models
-        Stacker_Regresion.Classfier = Classifier
+        Stacker_Regresion.Final_model = Final_model
         Stacker_Regresion.training_sets_split = training_sets_split
         Stacker_Regresion.Trained_models = [False for i in range(len(models))]
+        Stacker_Regresion.Boosting = Boosting
         
     def get_clousest_clases(self,X,Y):
         """
@@ -73,9 +74,14 @@ class Stacker_Regresion:
                 Stacker_Regresion.Trained_models[cnt] = True
             cnt += 1
         
+            
         classes,pred = Stacker_Regresion.get_clousest_clases(self,X_train2,Y_train2)
         
-        hist.append( Stacker_Regresion.Classfier.fit(X_train2,classes))
+        if Stacker_Regresion.Boosting:
+            F_set = pd.concat([pd.DataFrame( X_train2) ,pd.DataFrame(pred)],axis=1,join='inner').values
+            hist.append( Stacker_Regresion.Final_model.fit(X_train2,F_set))
+        else:
+            hist.append( Stacker_Regresion.Final_model.fit(X_train2,classes))
         
         return hist
         
@@ -91,7 +97,7 @@ class Stacker_Regresion:
             cnt+=1
             
             
-        temp = Stacker_Regresion.Classfier.predict(X)
+        temp = Stacker_Regresion.Final_model.predict(X)
         if(temp.shape[0] != X.shape[0]):
                 temp = temp.reshape(1,-1)
         temp = temp.squeeze()
@@ -123,10 +129,6 @@ class Stacker_Regresion:
     
     def evaluate_models(self,X,Y):
         """evaluating every trained model and final stacker
-
-        Args:
-            X (_type_): _description_
-            Y (_type_): _description_
         """
         f_pred,pred = Stacker_Regresion.predict(self = self,X=X)
         print("\nEvaluating Final model: \n")
