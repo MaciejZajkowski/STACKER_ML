@@ -78,7 +78,7 @@ class Stacker_Regresion:
         classes,pred = Stacker_Regresion.get_clousest_clases(self,X_train2,Y_train2)
         
         if Stacker_Regresion.Boosting:
-            F_set = pd.concat([pd.DataFrame( X_train2) ,pd.DataFrame(pred)],axis=1,join='inner').values.reshape(1,-1)
+            F_set = pd.concat([pd.DataFrame( X_train2) ,pd.DataFrame(pred)],axis=1,join='inner').values.reshape(-1,1)
             print(F_set)
             hist.append( Stacker_Regresion.Final_model.fit(F_set,Y_train2))
         else:
