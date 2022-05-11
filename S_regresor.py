@@ -1,3 +1,4 @@
+from operator import contains
 import pandas as pd
 import numpy as np
 import sklearn as skl
@@ -137,9 +138,12 @@ class Stacker_Regresion:
         """
         f_pred,pred = Stacker_Regresion.predict(self = self,X=X)
         print("\nEvaluating Final model: \n")
+        cnt =0
         Stacker_Regresion.evaluate(self=self,Y=Y,pred=f_pred)
         for i in range(len(Stacker_Regresion.models)):
             if Stacker_Regresion.Trained_models[i]:
-                print("\nEvaluating model: {} \n".format(Stacker_Regresion.models[i-1]))
-                Stacker_Regresion.evaluate(self = self,Y=Y,pred = pred[i])
+                print("\nEvaluating model: {} \n".format(Stacker_Regresion.models[i]))
+                Stacker_Regresion.evaluate(self = self,Y=Y,pred = pred[i-cnt])
+            else:
+                cnt+=1
         
