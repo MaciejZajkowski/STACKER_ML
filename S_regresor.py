@@ -55,6 +55,7 @@ class Stacker_Regresion:
             random state is used to train test split, it is important to use your own random state when training models separetly - if not it may cause mixing
             datasets for difrent lines of model - it will cause clasifier to malfunction -  
             
+            m            
             
         """
         if len(models_to_train) != len(Stacker_Regresion.models) and len(models_to_train) < len(Stacker_Regresion.models):
@@ -139,6 +140,6 @@ class Stacker_Regresion:
         Stacker_Regresion.evaluate(self=self,Y=Y,pred=f_pred)
         for i in range(len(Stacker_Regresion.models)):
             if Stacker_Regresion.Trained_models[i]:
-                print("\nEvaluating model: {} \n".format(Stacker_Regresion.models[i]))
+                print("\nEvaluating model: {} \n".format(Stacker_Regresion.models[i-1]))
                 Stacker_Regresion.evaluate(self = self,Y=Y,pred = pred[i])
         
