@@ -97,7 +97,7 @@ class Stacker_Regresion:
             cnt+=1
         
         if Stacker_Regresion.Boosting:
-            F_set = pd.concat([pd.DataFrame( X) ,pd.DataFrame(predictions)],axis=1,join='inner').values.reshape(-1,1)
+            F_set = pd.concat([pd.DataFrame( X) ,pd.DataFrame(predictions)],axis=1,join='inner').values
             final_pred =Stacker_Regresion.Final_model.predict(F_set)
         else:    
             temp = Stacker_Regresion.Final_model.predict(X)
