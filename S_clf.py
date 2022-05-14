@@ -101,7 +101,8 @@ class Stacker_Classifier:
         #TODO conditions for squese
         #cm =confusion_matrix(Y,pred)
         #sns.heatmap(cm)
-        print (f"\naccurancy: {skl.metrics.accurancy_score(Y,pred)}")
+        from sklearn.metrics import accuracy_score as acc
+        print (f"\naccurancy: {acc(Y,pred)}")
         
         
     def evaluate_models(self,X,Y):
