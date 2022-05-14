@@ -53,14 +53,14 @@ class Stacker_Classifier:
             cnt += 1
         
         predictions =[]
-        cnt = 0
+        cnt2 = 0
         for model in Stacker_Classifier.models:
-            if Stacker_Classifier.Trained_models[cnt]:
+            if Stacker_Classifier.Trained_models[cnt2]:
                 pred = model.predict(X)
                 if(pred.shape[0] != X.shape[0]):
                     pred = pred.reshape(1,-1)
                 predictions.append(pred.squeeze()) 
-            cnt += 1
+            cnt2 += 1
          
         if Stacker_Classifier.Boosting:
             F_set = pd.concat([pd.DataFrame( X_train2) ,pd.DataFrame(np.array(predictions).reshape(-1,1))],axis=1,join='inner')
