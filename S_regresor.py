@@ -21,7 +21,7 @@ class Stacker_Regresion:
     def get_clousest_clases(self,X,Y):
         """
             Gets predictions for every model in models
-            then chouses witch model is best for each prediction (mse) 
+            then chouses witch model is best for each prediction (se) 
             returnes data frame of clases and dataframe of all predictions
         """
         
