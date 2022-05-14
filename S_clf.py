@@ -4,6 +4,8 @@ import numpy as np
 import sklearn as skl
 from sklearn.model_selection import train_test_split
 from random import randint
+from sklearn.metrics import confusion_matrix
+import seaborn as sns
 
 class Stacker_Classifier:
     """ 
@@ -51,12 +53,14 @@ class Stacker_Classifier:
             cnt += 1
         
         predictions =[]
+        cnt = 0
         for model in Stacker_Classifier.models:
             if Stacker_Classifier.Trained_models[cnt]:
                 pred = model.predict(X)
                 if(pred.shape[0] != X.shape[0]):
                     pred = pred.reshape(1,-1)
                 predictions.append(pred.squeeze()) 
+                cnt += 1
          
         if Stacker_Classifier.Boosting:
             F_set = pd.concat([pd.DataFrame( X_train2) ,pd.DataFrame(np.array(predictions).reshape(-1,1))],axis=1,join='inner')
@@ -95,23 +99,10 @@ class Stacker_Classifier:
     
     def evaluate(self,Y, pred):
         #TODO conditions for squese
-        x= []
-        x.append(skl.metrics.median_absolute_error(Y,pred))
-        print("Median absolute error: " ,x[0])
+        cm =confusion_matrix(Y,pred)
+        sns.heatmap(cm)
         
-        x.append(skl.metrics.mean_absolute_percentage_error(Y,pred))
-        print("Median absolute % error: " ,x[1])
         
-        x.append(skl.metrics.mean_squared_log_error(Y,pred))
-        print("Mean sq log error: " ,x[2])
-        
-        x.append(skl.metrics.mean_squared_error(Y,pred))
-        print("Mean sq error: " ,x[3])
-        
-        x.append(skl.metrics.r2_score(Y,pred))
-        print("r2 score: " ,x[4])
-        return x
-    
     def evaluate_models(self,X,Y):
         """evaluating every trained model and final stacker
         """
