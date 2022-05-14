@@ -102,7 +102,7 @@ class Stacker_Classifier:
         #cm =confusion_matrix(Y,pred)
         #sns.heatmap(cm)
         from sklearn.metrics import accuracy_score as acc
-        print (f"\naccurancy: {acc(Y,pred)}")
+        print (f"accurancy: {acc(Y,pred)} \n")
         
         
     def evaluate_models(self,X,Y):
