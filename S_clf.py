@@ -60,7 +60,7 @@ class Stacker_Classifier:
                 if(pred.shape[0] != X.shape[0]):
                     pred = pred.reshape(1,-1)
                 predictions.append(pred.squeeze()) 
-                cnt += 1
+            cnt += 1
          
         if Stacker_Classifier.Boosting:
             F_set = pd.concat([pd.DataFrame( X_train2) ,pd.DataFrame(np.array(predictions).reshape(-1,1))],axis=1,join='inner')
