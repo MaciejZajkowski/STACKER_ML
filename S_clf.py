@@ -7,8 +7,7 @@ from sklearn.model_selection import train_test_split
 from random import randint
 from sklearn.metrics import confusion_matrix
 import seaborn as sns
-import matplotlib as plt
-
+import matplotlib.pyplot as plt
 class Stacker_Classifier:
     """ 
         This model is Stacker of regresors, it trains provided models
