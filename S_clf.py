@@ -106,8 +106,8 @@ class Stacker_Classifier:
         plt.show()
         print (f"accurancy: {accuracy_score(Y,pred)} \n")
         print(f'f1 score: {f1_score(Y,pred,average="macro")}\n')
-        print(f'recal: {recall_score(Y,pred)}\n')
-        print(f'precision: {precision_score(Y,pred)}\n')
+        print(f'recal: {recall_score(Y,pred,average="macro")}\n')
+        print(f'precision: {precision_score(Y,pred,average="macro")}\n')
         
         
     def evaluate_models(self,X,Y):
