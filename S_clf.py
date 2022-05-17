@@ -8,6 +8,7 @@ from random import randint
 from sklearn.metrics import confusion_matrix
 import seaborn as sns
 import matplotlib.pyplot as plt
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 class Stacker_Classifier:
     """ 
         This model is Stacker of regresors, it trains provided models
@@ -103,8 +104,10 @@ class Stacker_Classifier:
         cm =confusion_matrix(Y,pred)
         sns.heatmap(cm)
         plt.show()
-        from sklearn.metrics import accuracy_score as acc
-        print (f"accurancy: {acc(Y,pred)} \n")
+        print (f"accurancy: {accuracy_score(Y,pred)} \n")
+        print(f'f1 score: {f1_score(Y,pred)}\n')
+        print(f'recal: {recall_score(Y,pred)}\n')
+        print(f'precision: {precision_score(Y,pred)}\n')
         
         
     def evaluate_models(self,X,Y):
