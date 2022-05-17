@@ -1,4 +1,5 @@
 from operator import contains
+from matplotlib.pyplot import plot
 import pandas as pd
 import numpy as np
 import sklearn as skl
@@ -6,6 +7,7 @@ from sklearn.model_selection import train_test_split
 from random import randint
 from sklearn.metrics import confusion_matrix
 import seaborn as sns
+import matplotlib as plt
 
 class Stacker_Classifier:
     """ 
@@ -99,8 +101,9 @@ class Stacker_Classifier:
     
     def evaluate(self,Y, pred):
         #TODO conditions for squese
-        #cm =confusion_matrix(Y,pred)
-        #sns.heatmap(cm)
+        cm =confusion_matrix(Y,pred)
+        sns.heatmap(cm)
+        plt.show()
         from sklearn.metrics import accuracy_score as acc
         print (f"accurancy: {acc(Y,pred)} \n")
         
