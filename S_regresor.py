@@ -115,7 +115,7 @@ class Stacker_Regresion:
         return np.array(final_pred),np.array(predictions)
     
     def evaluate(self,Y, pred):
-        #TODO conditions for squese
+        pred.squezze()
         x= []
         x.append(skl.metrics.median_absolute_error(Y,pred))
         print("Median absolute error: " ,x[0])
