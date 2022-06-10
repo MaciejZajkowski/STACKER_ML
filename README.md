@@ -10,5 +10,7 @@ Below we can see training process:
 Pipeline of predict method consists of classifier chousing what prediction use (not finished – for now all models are predicting for all data, than only output is selected based on classifier selections).
 
 As test file proves that this model for now is not exactly best one – because it trains every model on same data, so classifiers / regressors are not specialized (only specialization is due to theirs different architecture – witch may be a lot in only some cases).  We can see that final classifier adds its own error to final predictions. 
+
 TODO: Implementing smart data split - (every model in first layer is trained on different data, or at least partially (idea of making some buffer zone).  General idea is to split data to different models by different cases (maybe using k - means algorithm) – main goal is to make each model an expert in some use case.  
+
 Possible use case: data with a lot of missing values, each classifier/ regressor will train on different type of data. 
