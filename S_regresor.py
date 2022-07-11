@@ -1,7 +1,8 @@
-from operator import contains
+
 import pandas as pd
 import numpy as np
 import sklearn as skl
+from sklearn.cluster import KMeans
 from sklearn.model_selection import train_test_split
 from random import randint
 
@@ -45,7 +46,7 @@ class Stacker_Regresion:
             
         return pd.DataFrame(classes,columns=['Best_model']), pd.DataFrame(predictions)
     
-    def fit(self,X,Y,models_to_train = [],random_state = randint(1,100)):
+    def fit(self,X,Y,models_to_train = [],random_state = randint(1,100),smart_data_split  = True):
         """
             separates data then fits models, and clasifier to chouse what data is the best 
             returns table of history (if you are using keras, in skl models returns just model names so use it wisely)
@@ -59,12 +60,25 @@ class Stacker_Regresion:
             m            
             
         """
+        num_of_clusters = len(Stacker_Regresion.models)
         if len(models_to_train) != len(Stacker_Regresion.models) and len(models_to_train) < len(Stacker_Regresion.models):
+            num_of_clusters = 0
             for i in range( len(Stacker_Regresion.models) -len( models_to_train) ):
-                models_to_train.append(True)
+                num_of_clusters +=1
+                models_to_train.append(True) #setting parameters witch model should be trained
         from IPython.display import clear_output
         " Line 1 of model -  "
-        X_train1, X_train2, Y_train1, Y_train2 = train_test_split(X,Y, test_size=Stacker_Regresion.training_sets_split,random_state=random_state)
+        
+        if smart_data_split:
+            kmeans = KMeans(n_clusters= num_of_clusters)
+            keys = kmeans.fit_predict(X)
+            
+            if isinstance(X, pd.DataFrame) and isinstance(Y, pd.DataFrame):
+                X,Y = X.to_numpy,Y.to_numpy
+                #TODO!!!!!
+            for index, raw in range(len)
+        else:    
+            X_train1, X_train2, Y_train1, Y_train2 = train_test_split(X,Y, test_size=Stacker_Regresion.training_sets_split,random_state=random_state)
         hist = []
         #fiting models
         cnt = 0
